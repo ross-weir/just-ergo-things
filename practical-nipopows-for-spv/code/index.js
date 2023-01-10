@@ -12,8 +12,8 @@ const TX_ID =
 const HEADER_ID =
   "d1366f762e46b7885496aaab0c42ec2950b0422d48aec3b91f45d4d0cdeb41e5";
 
-const K_PARAM = 7;
-const M_PARAM = 6;
+const K_PARAM = 6;
+const M_PARAM = 5;
 
 // Retrieve a NIPoWPoW from the provided nodeUrl.
 async function getNipopowFromNode(nodeUrl) {
@@ -30,10 +30,16 @@ async function main() {
     getNipopowFromNode("http://159.65.11.55:9053"),
     getNipopowFromNode("http://213.239.193.208:9053"),
   ]);
-  //
+  // The verifier needs the genesis block id due to the way the underlying interlink data structure works
   const nipopowVerifier = new NiPoPoWVerifier(GENESIS);
 
   nipopows.forEach((proof) => nipopowVerifier.process(proof));
+
+  const bestProof = nipopowVerifier.bestProof;
+
+  if (!bestProof) {
+    throw new Error("verifier couldn't determine the best proof!");
+  }
 }
 
 main();
