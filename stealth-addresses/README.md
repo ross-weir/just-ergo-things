@@ -81,7 +81,7 @@ const boxIsSpendable = ur.eq(gr.mul(bobsSecret)) && uy.eq(gy.mul(bobsSecret))
 
 And that's pretty much it! I created a flow chart as well to try and help visualize the process:
 
-![flowchart](Dragster.jpg)
+![flowchart](https://github.com/ross-weir/just-ergo-things/blob/main/stealth-addresses/img/stealth-address-flowchart.jpg)
 
 ### Full code example
 
